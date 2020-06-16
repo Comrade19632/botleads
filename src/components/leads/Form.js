@@ -4,8 +4,8 @@ import {addLead} from "../../actions/leads";
 
 class Form extends Component {
     state = {
-        name : '',
-        phone_number : '+7',
+        name: '',
+        phone_number: '+7',
         email: '',
         message: ''
     }
@@ -13,16 +13,22 @@ class Form extends Component {
         const {target} = event;
         const {name, value} = target;
         this.setState({
-        [name]:value
+            [name]: value
         })
     }
     onSubmit = (event) => {
         event.preventDefault();
         this.props.addLead({...this.state});
+        this.setState({
+            name: '',
+            phone_number: '+7',
+            email: '',
+            message: ''
+        })
     }
 
     render() {
-        const {name,phone_number,email,message} = this.state;
+        const {name, phone_number, email, message} = this.state;
         return (
             <div className='card card-body mt-4 mb-4 p-4 rounded'>
                 <h1>Add lead</h1>
@@ -72,4 +78,4 @@ class Form extends Component {
     }
 }
 
-export default connect(null,{addLead})(Form);
+export default connect(null, {addLead})(Form);
