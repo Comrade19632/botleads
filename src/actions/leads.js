@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {ADD_LEAD, CREATE_MESSAGE, DELETE_LEAD, GET_ERRORS, GET_LEADS} from "./types";
 import {API_URL} from "../index";
-import {createMessage} from "./messages";
 
 // GET_LEADS
 export const getLeads = () => dispatch => {
