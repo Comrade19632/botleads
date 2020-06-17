@@ -11,7 +11,7 @@ class Login extends Component {
     };
     onSubmit = e => {
         e.preventDefault();
-        this.props.login(this.state.username, this.state.password)
+        this.props.login(this.state.username,this.state.password)
     }
     onChange = e => {
         this.setState({
@@ -20,17 +20,19 @@ class Login extends Component {
     }
 
     render() {
-        if (this.props.isAuthenticated) return <Redirect to='/'/>
+        if (this.props.isAuthenticated) {
+            return <Redirect to="/" />
+        }
         const {username, password} = this.state;
         return (
-            <div className='col-md-6 m-auto'>
-                <div className='card card-body mt-4 mb-4'>
+            <div className='col-md-6 m-auto '>
+                <div className='card card-body mt-4 mb-4 rounded'>
                     <h1>Login</h1>
                     <form onSubmit={this.onSubmit}>
                         <div className="from-group">
                             <label>Username</label>
                             <input
-                                className='form-control'
+                                className='form-control rounded'
                                 type="text"
                                 name='username'
                                 onChange={this.onChange}
@@ -39,7 +41,7 @@ class Login extends Component {
                         <div className="from-group">
                             <label>Password</label>
                             <input
-                                className='form-control'
+                                className='form-control rounded'
                                 type="password"
                                 name='password'
                                 onChange={this.onChange}
@@ -47,7 +49,7 @@ class Login extends Component {
                         </div>
 
                         <div className="form-group">
-                            <button type='submit' className='btn btn-primary'>Login</button>
+                            <button type='submit' className='btn btn-primary rounded mt-1'>Login</button>
                         </div>
                         <p>
                             Dont have an account? <Link to="/register">Register</Link>
@@ -59,10 +61,8 @@ class Login extends Component {
     }
 }
 
-const mapStateToProps = state => (
-    {
-        isAuthenticated: state.auth.isAuthenticated
-    }
-)
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+})
 
 export default connect(mapStateToProps, {login})(Login);

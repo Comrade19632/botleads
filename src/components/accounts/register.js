@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link, Redirect} from "react-router-dom";
 import {connect} from 'react-redux';
-import { register} from "../../actions/auth";
+import {register} from "../../actions/auth";
 import {createMessage} from "../../actions/messages";
 
 class Register extends Component {
@@ -13,17 +13,16 @@ class Register extends Component {
     };
     onSubmit = e =>{
         e.preventDefault();
-        const {username,email,password, password2} = this.state
-        if (password != password2) {
-            this.props.createMessage('Passwords do not match')
-        }
-        else {
+        const {username,email,password,password2} =this.state;
+        if (password !== password2 ) {
+            this.props.createMessage('passwords dont match')
+        } else {
             const newUser = {
                 username,
                 password,
                 email
             }
-            this.props.register(newUser);
+            this.props.register(newUser)
         }
     }
     onChange = e => {
@@ -33,17 +32,19 @@ class Register extends Component {
     }
 
     render() {
-        if (this.props.isAuthenticated) return <Redirect to='/'/>
+        if (this.props.isAuthenticated) {
+            return <Redirect to="/" />
+        }
         const {username, email, password, password2} = this.state;
         return (
             <div className='col-md-6 m-auto'>
-                <div className='card card-body mt-4 mb-4'>
+                <div className='card card-body mt-4 mb-4 rounded'>
                     <h1>Register</h1>
                     <form onSubmit={this.onSubmit}>
                         <div className="from-group">
                             <label>Username</label>
                             <input
-                                className='form-control'
+                                className='form-control rounded'
                                 type="text"
                                 name='username'
                                 onChange={this.onChange}
@@ -52,7 +53,7 @@ class Register extends Component {
                         <div className="from-group">
                             <label>Email</label>
                             <input
-                                className='form-control'
+                                className='form-control rounded'
                                 type="email"
                                 name='email'
                                 onChange={this.onChange}
@@ -61,7 +62,7 @@ class Register extends Component {
                         <div className="from-group">
                             <label>Password</label>
                             <input
-                                className='form-control'
+                                className='form-control rounded'
                                 type="password"
                                 name='password'
                                 onChange={this.onChange}
@@ -70,7 +71,7 @@ class Register extends Component {
                         <div className="from-group">
                             <label>Confirm password</label>
                             <input
-                                className='form-control'
+                                className='form-control rounded'
                                 type="password"
                                 name='password2'
                                 onChange={this.onChange}
@@ -78,7 +79,7 @@ class Register extends Component {
                         </div>
 
                         <div className="form-group">
-                            <button type='submit' className='btn btn-primary rounded'>Register</button>
+                            <button type='submit' className='btn btn-primary rounded mt-1'>Register</button>
                         </div>
                         <p>
                             Already have an account? <Link to="/login">Login</Link>
@@ -90,10 +91,8 @@ class Register extends Component {
     }
 }
 
-const mapStateToProps = state => (
-    {
-        isAuthenticated: state.auth.isAuthenticated
-    }
-)
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+})
 
-export default connect(mapStateToProps, {register, createMessage})(Register);
+export default connect(mapStateToProps, {register,createMessage})(Register);
