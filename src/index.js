@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-export const API_URL = 'http://127.0.0.1:8000/api/'
+export const API_URL = 'http://35.228.238.202:8000/api/'
 
 
 
