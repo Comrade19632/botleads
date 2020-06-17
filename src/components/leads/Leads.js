@@ -30,7 +30,7 @@ class Leads extends Component {
                         <tr key={lead.id}>
                             <td>{lead.id}</td>
                             <td>{lead.name}</td>
-                            <td>{lead.phone_number}</td>
+                            <td><a href={`tel:${lead.phone_number}`}>{lead.phone_number}</a></td>
                             <td>{lead.email}</td>
                             <td>{lead.message}</td>
                             <td>
